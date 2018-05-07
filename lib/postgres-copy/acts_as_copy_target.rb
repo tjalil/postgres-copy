@@ -165,9 +165,9 @@ module PostgresCopy
 
         connection.raw_connection.copy_data(%{COPY #{table} #{columns_string} FROM STDIN #{options_string}}) do
           if options[:format] == :binary
-            copy_from_csv_binary(options, io)
+            execute_copy_from_csv_binary(options, io)
           else
-            copy_from_csv_non_binary(options, io)
+            execute_copy_from_csv_non_binary(options, io)
           end
         end
       end
